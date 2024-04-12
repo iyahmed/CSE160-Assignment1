@@ -4,14 +4,14 @@ class Circle {
         this.position = [0.0, 0.0, 0.0];
         this.color = [1.0, 1.0, 1.0, 1.0];
         this.size = 5.0
-        this.segments = 10;
+        this.segment = 10;
     }
 
     render() {
         var xy = this.position;
         var rgba = this.color;
         var size = this.size;
-        var segments = this.segments;
+        var segment = this.segment;
 
         // Pass the color of a point to u_FragColor variable
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
@@ -19,7 +19,7 @@ class Circle {
         // Draw
         var d = this.size / 200.0; // delta
 
-        let angleStep = 360 / segments;
+        let angleStep = 360 / segment; // Picking the alpha of the internal triangles
         for (var angle = 0; angle < 360; angle = angle + angleStep) {
             let centerPt = [xy[0], xy[1]];
             let angle1 = angle;
