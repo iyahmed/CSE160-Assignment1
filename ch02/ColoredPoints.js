@@ -65,9 +65,10 @@ function connectVariablesToGLSL() {
 const POINT = 0;
 const TRIANGLE = 1;
 const CIRCLE = 2;
+const DRAWING = 3;
 
 // Globals related to UI elements
-let g_selectedColor = [1.0, 1.0, 1.0, 1.0];
+let g_selectedColor = [1.0, 0.0, 0.0, 1.0];
 let g_selectedSize = 5;
 let g_selectedSegment = 10;
 let g_selectedType = POINT;
@@ -93,6 +94,9 @@ function addActionsForHTMLUI() {
 
   // Segment Slider Events
   document.getElementById('segmentSlide').addEventListener('mouseup', function () { g_selectedSegment = this.value; });
+
+  // Drawing Button Evenets
+  document.getElementById('drawingButton').onclick = function () { g_selectedType = DRAWING; };
 }
 
 function main() {
@@ -136,6 +140,12 @@ function click(ev) {
     point = new Triangle();
   } else if (g_selectedType == CIRCLE) {
     point = new Circle();
+  } else if (g_selectedType == DRAWING) {// TODO: Let two points be rendered at the same time
+    point = new Drawing();
+    // temp
+    /*let z = x + 100;
+    let w = y + 100;
+    point.position = [x, y, z, w];*/
   }
   point.position = [x, y];
   point.color = g_selectedColor.slice();
@@ -202,8 +212,8 @@ function renderAllShapes() {// I could not include the perfomance montoring code
 /*function sendTextToHTML(text, htmlID) {
 var htmlElm = document.getElementById(htmlID);
 if (!htmlElm) {
-  console.log("Failed to get: " + htmlID + " from HTML");
-  return;
+console.log("Failed to get: " + htmlID + " from HTML");
+return;
 }
 htmlElm.innerHTML = text;
 }*/
