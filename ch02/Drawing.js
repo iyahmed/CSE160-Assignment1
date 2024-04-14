@@ -22,6 +22,9 @@ class Rectangle {// Check circle.js
         var d = this.size / 200; // delta
         // console.log("FIRST TRIANGLE POINTS: ", xy[0], xy[1], xy[0] + d, xy[1], xy[0], xy[1] + d);
         // console.log("SECOND TRIANGLE POINTS: ", -xy[0], -xy[1], -xy[0] - d, -xy[1], -xy[0], -xy[1] - d);
+        // Slightly change the color of the first triangle, to distinguish it from the others
+        rgba = [1.0, 0.0, 0.0, 1.0];
+        gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
         drawTriangle([xy[0], xy[1], xy[0] + d, xy[1], xy[0], xy[1] + d]);
         // Slightly change the color of the second triangle, to distinguish it from the others
         rgba = [0.5, 0.5, 0.5, 1.0];
@@ -33,8 +36,8 @@ class Rectangle {// Check circle.js
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
         drawTriangle([-xy[0], -xy[1], -xy[0] - d, xy[1], xy[0], xy[1] + d]);
         // Slightly change the color of the fourth triangle, to distinguish it from the others
-        rgba = [1.0, 0.0, 1.0, 1.0];
-        // rgba = [1.0, 1.0, 0.0, 1.0];
+        rgba = [0.0, 1.0, 0.0, 1.0];
+        // rgba = [1.0, 0.0, 1.0, 1.0];
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
         drawTriangle([xy[0], xy[1], xy[0] + d, -xy[1], -xy[0], -xy[1] - d]);
     }
