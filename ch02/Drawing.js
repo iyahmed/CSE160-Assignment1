@@ -1,14 +1,13 @@
-class Drawing {// Check circle.js
+class Rectangle {// Check circle.js
     constructor() {
-        this.type = 'drawing';
+        this.type = 'rectangle';
         this.position = [0.0, 0.0, 0.0];
-        this.color = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0];
+        this.color = [1.0, 1.0, 1.0, 1.0];
         this.size = 5.0;
-        this.multiplePoints = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
     }
 
     render() {
-        var multiplePoints = this.multiplePoints;
+        var xy = this.position;
         var rgba = this.color;
         var size = this.size;
 
@@ -18,11 +17,26 @@ class Drawing {// Check circle.js
         // Pass the size of a point to the u_Size variable
         gl.uniform1f(u_Size, size);
 
-        console.log("MULTIPLE POINTS: ", multiplePoints[0], multiplePoints[1], multiplePoints[2], multiplePoints[3], multiplePoints[4], multiplePoints[5], multiplePoints[6], multiplePoints[7]);
 
-        // Draw A 4 Triangle-Circle
+        // Draw Two Flipped Triangles That Can Form A Rectangle
         var d = this.size / 200; // delta
-        drawTriangle([multiplePoints[0], multiplePoints[1], multiplePoints[0] + d, multiplePoints[1], multiplePoints[0], multiplePoints[1] + d]); // TODO: Fix it to render a wheel
+        // console.log("FIRST TRIANGLE POINTS: ", xy[0], xy[1], xy[0] + d, xy[1], xy[0], xy[1] + d);
+        // console.log("SECOND TRIANGLE POINTS: ", -xy[0], -xy[1], -xy[0] - d, -xy[1], -xy[0], -xy[1] - d);
+        drawTriangle([xy[0], xy[1], xy[0] + d, xy[1], xy[0], xy[1] + d]);
+        // Slightly change the color of the second triangle, to distinguish it from the others
+        rgba = [0.5, 0.5, 0.5, 1.0];
+        gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+        drawTriangle([-xy[0], -xy[1], -xy[0] - d, -xy[1], -xy[0], -xy[1] - d]);
+        // Slightly change the color of the third triangle, to distinguish it from the others
+        rgba = [1.0, 1.0, 0.0, 1.0];
+        // rgba = [1.0, 0.0, 1.0, 1.0];
+        gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+        drawTriangle([-xy[0], -xy[1], -xy[0] - d, xy[1], xy[0], xy[1] + d]);
+        // Slightly change the color of the fourth triangle, to distinguish it from the others
+        rgba = [1.0, 0.0, 1.0, 1.0];
+        // rgba = [1.0, 1.0, 0.0, 1.0];
+        gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+        drawTriangle([xy[0], xy[1], xy[0] + d, -xy[1], -xy[0], -xy[1] - d]);
     }
 }
 

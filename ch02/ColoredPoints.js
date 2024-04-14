@@ -136,22 +136,50 @@ function click(ev) {
   let point;
   if (g_selectedType == POINT) {
     point = new Point();
+    point.position = [x, y];
+    point.color = g_selectedColor.slice();
+    point.size = g_selectedSize;
+    point.segment = g_selectedSegment;
+    g_shapesList.push(point);
   } else if (g_selectedType == TRIANGLE) {
     point = new Triangle();
+    point.position = [x, y];
+    point.color = g_selectedColor.slice();
+    point.size = g_selectedSize;
+    point.segment = g_selectedSegment;
+    g_shapesList.push(point);
   } else if (g_selectedType == CIRCLE) {
     point = new Circle();
-  } else if (g_selectedType == DRAWING) {// TODO: Let two points be rendered at the same time
-    point = new Drawing();
-  }
-  point.position = [x, y];
-  point.color = g_selectedColor.slice();
-  point.size = g_selectedSize;
-  point.segment = g_selectedSegment;
-  // Drawing a wheel
-  let z = x + 0.05, w = y - 0.05, a = x - 0.05, b = y + 0.05, c = x - 0.05, d = y - 0.05;
-  point.multiplePoints = [x, y, z, w, a, b, c, d];
-  g_shapesList.push(point);
+    point.position = [x, y];
+    point.color = g_selectedColor.slice();
+    point.size = g_selectedSize;
+    point.segment = g_selectedSegment;
+    g_shapesList.push(point);
+  } else if (g_selectedType == DRAWING) {// TODO: Draw everything with triangles
+    // Draw a diamond at the center
+    let diamond = new Rectangle();
+    diamond.position = [0, 0];
+    diamond.color = g_selectedColor.slice();
+    diamond.size = 40;
+    diamond.segment = g_selectedSegment;
+    g_shapesList.push(diamond);
 
+    // Draw two reflected triangles at the center
+    let reflected = new Rectangle();
+    reflected.position = [0.5, 0];
+    reflected.color = g_selectedColor.slice();
+    reflected.size = 40;
+    reflected.segment = g_selectedSegment;
+    g_shapesList.push(reflected);
+
+    // Draw a yellow Sun circle at the top
+    let circle = new Circle();
+    circle.position = [0.0, 0.5];
+    circle.color = [1.0, 1.0, 0.0, 1.0];
+    circle.size = 40;
+    circle.segment = 16;
+    g_shapesList.push(circle);
+  }
   // Store the coordinates to g_points array
   // g_points.push([x, y]);
 
