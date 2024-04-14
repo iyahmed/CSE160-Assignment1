@@ -147,9 +147,9 @@ function click(ev) {
   point.color = g_selectedColor.slice();
   point.size = g_selectedSize;
   point.segment = g_selectedSegment;
-  // temp
-  let z = x + 0.05, w = y + 0.05, a = x - 0.05, b = y - 0.05;
-  point.multiplePoints = [x, y, z, w, a, b];
+  // Drawing a wheel
+  let z = x + 0.05, w = y - 0.05, a = x - 0.05, b = y + 0.05, c = x - 0.05, d = y - 0.05;
+  point.multiplePoints = [x, y, z, w, a, b, c, d];
   g_shapesList.push(point);
 
   // Store the coordinates to g_points array

@@ -18,13 +18,11 @@ class Drawing {// Check circle.js
         // Pass the size of a point to the u_Size variable
         gl.uniform1f(u_Size, size);
 
-        console.log("MULTIPLE POINTS: ", multiplePoints[0], multiplePoints[1], multiplePoints[2], multiplePoints[3], multiplePoints[4], multiplePoints[5]);
+        console.log("MULTIPLE POINTS: ", multiplePoints[0], multiplePoints[1], multiplePoints[2], multiplePoints[3], multiplePoints[4], multiplePoints[5], multiplePoints[6], multiplePoints[7]);
 
-        // Draw 3 Triangles
+        // Draw A 4 Triangle-Circle
         var d = this.size / 200; // delta
-        drawTriangle([multiplePoints[0], multiplePoints[1], multiplePoints[0] + d, multiplePoints[1], multiplePoints[0], multiplePoints[1] + d]);
-        drawTriangle([multiplePoints[2], multiplePoints[3], multiplePoints[2] + d, multiplePoints[3], multiplePoints[2], multiplePoints[3] + d]);
-        drawTriangle([multiplePoints[4], multiplePoints[5], multiplePoints[4] + d, multiplePoints[5], multiplePoints[4], multiplePoints[5] + d]);
+        drawTriangle([multiplePoints[0], multiplePoints[1], multiplePoints[0] + d, multiplePoints[1], multiplePoints[0], multiplePoints[1] + d]); // TODO: Fix it to render a wheel
     }
 }
 
