@@ -5,6 +5,7 @@ class Circle {
         this.color = [1.0, 1.0, 1.0, 1.0];
         this.size = 5.0
         this.segment = 10;
+        this.multiplePoints = null; // This field is only for Drawing()
     }
 
     render() {

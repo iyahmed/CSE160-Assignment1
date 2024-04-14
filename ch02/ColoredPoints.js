@@ -95,7 +95,7 @@ function addActionsForHTMLUI() {
   // Segment Slider Events
   document.getElementById('segmentSlide').addEventListener('mouseup', function () { g_selectedSegment = this.value; });
 
-  // Drawing Button Evenets
+  // Drawing Button Events
   document.getElementById('drawingButton').onclick = function () { g_selectedType = DRAWING; };
 }
 
@@ -142,15 +142,14 @@ function click(ev) {
     point = new Circle();
   } else if (g_selectedType == DRAWING) {// TODO: Let two points be rendered at the same time
     point = new Drawing();
-    // temp
-    /*let z = x + 100;
-    let w = y + 100;
-    point.position = [x, y, z, w];*/
   }
   point.position = [x, y];
   point.color = g_selectedColor.slice();
   point.size = g_selectedSize;
   point.segment = g_selectedSegment;
+  // temp
+  let z = x + 0.05, w = y + 0.05, a = x - 0.05, b = y - 0.05;
+  point.multiplePoints = [x, y, z, w, a, b];
   g_shapesList.push(point);
 
   // Store the coordinates to g_points array

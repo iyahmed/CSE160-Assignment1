@@ -4,6 +4,7 @@ class Triangle {
     this.position = [0.0, 0.0, 0.0];
     this.color = [1.0, 1.0, 1.0, 1.0];
     this.size = 5.0;
+    this.multiplePoints = null; // This field is only for Drawing()
   }
   render() {
     var xy = this.position;
